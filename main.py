@@ -1,7 +1,3 @@
-
-
-
-
 #Calculator
 
 #Add
@@ -20,37 +16,39 @@ def multiply(n1, n2):
 def divide(n1, n2):
   return n1 / n2
 
-
-calculator = {
+# Grundrechenarten
+operations = {
   "+": add, 
   "-": subtract,
   "*": multiply,
   "/": divide
 }
 
+def calculator():
+  num1 = int(input("What`s the first number?: "))
+  for symbol in operations:
+    print(symbol)
+  should_continue = True
 
-num1 = int(input("What`s the first number?: "))
-for symbol in calculator:
-  print(symbol)
-operation_symbol = input("Pick an operation from the line above: ")
-num2 = int(input("What`s the second number?: "))
-first_answer = calculator[operation_symbol](num1, num2)
-print(f"{num1} {operation_symbol} {num2} = {first_answer}")
-
-calc_again = True
-last_answer = first_answer
-while calc_again:
-  repeat = input(f"Type 'y' to continue calculating with {last_answer}, or type 'n' to exit.: ")
-  if repeat == "y" or repeat == "Y":
-    operation_symbol = input("Pick another operation: ")
-    new_num = int(input("What`s the nextnumber?: "))
-    new_answer = calculator[operation_symbol](last_answer, new_num)
-    print(f"{last_answer} {operation_symbol} {new_num} = {new_answer}")
-    last_answer = new_answer
-  else:
-    print("Goodbye")
-    calc_again = False
+  # 
+  # num2 = int(input("What`s the second number?: "))
+  # first_answer = calculator[operation_symbol](num1, num2)
+  # print(f"{num1} {operation_symbol} {num2} = {first_answer}")
   
+  # last_answer = first_answer
+  while should_continue:
+    operation_symbol = input("Pick an operation: ")
+    num2 = int(input("What`s the next number?: "))
+    answer = operations[operation_symbol](num1, num2)
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+    repeat = input(f"Type 'y' to continuer calculating with {answer}, or type 'n' to start a new calcualation. If you will finisch calculating type 'x': ")
+    if repeat == "y" or repeat == "Y":
+      num1 = answer
+    elif repeat == "n" or repeat == "N":
+      should_continue = False
+      calculator()  
+    else:
+      return "GoodBye"
 
-
+calculator()
 
