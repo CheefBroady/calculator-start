@@ -38,9 +38,8 @@ for symbol in calculator:
   print(symbol)
 operation_symbol = input("Pick an operation from the line above: ")
 
-def answer(n1, n2):
-  return calculator[operation_symbol](n1, n2)
+answer = calculator[operation_symbol](num1, num2)
 
 
-print(f"{num1} {operation_symbol} {num2} = {answer(num1, num2)}")
+print(f"{num1} {operation_symbol} {num2} = {answer}")
 
